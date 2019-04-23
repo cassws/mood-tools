@@ -1,1 +1,1 @@
-# Mood trakcing tools built with R & Shiny
+# Mood tracking tools built with R & Shiny
