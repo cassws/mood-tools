@@ -2,6 +2,7 @@ library(tidyverse)
 library(googledrive)
 library(googlesheets4)
 library(ggthemr)
+library(GGally)
 
 function(input, output, session) {
   
@@ -58,6 +59,10 @@ output$big_mood_plot <- renderPlot({
                alpha = 0.9, size=1) +
     expand_limits(y=1)
 }, execOnResize = TRUE)
+
+output$a_new_plot <- renderPlot({
+  ggcorr(mood_data_to_plot$data)
+})
 
 output$info <- renderPrint({
   out <- nearPoints(mood_data_to_plot$data, input$user_hover, xvar = "Date", yvar = "Mood", threshold = 10, maxpoints = 1, addDist = TRUE)
