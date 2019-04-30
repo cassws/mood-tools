@@ -6,6 +6,12 @@ library(ggthemr)
 function(input, output, session) {
   
   ggthemr('flat dark', layout= 'clean', type='outer')
+  
+  interaction_type <- "none"
+  
+  observeEvent(input$user_click, print("click"))
+  observeEvent(input$user_brush, print("brush"))
+  observeEvent(input$user_hover, print("hover"))
 
   # install.packages("devtools")
   # devtools::install_github("tidyverse/googlesheets4")
@@ -37,21 +43,7 @@ observeEvent(input$go, {
   mood_data_full$data <- mood_data
   mood_data_to_plot$data <- mood_data
 })
-  
-  
-  # Combine the selected variables into a new data frame
-#  selectedData <- reactive({
-#    iris[, c(input$xcol, input$ycol)]
-#    iris[, c("Sepal.Length", "Sepal.Width")]
-#    
-#      })
-  
-#  clusters <- reactive({
-#    kmeans(selectedData(), input$clusters)
-#  })
-  
-  
-#output$bigmoodplot <- renderPlot(outPlot)
+
 
 output$big_mood_plot <- renderPlot({
   print("is this still running?")
@@ -67,16 +59,11 @@ output$big_mood_plot <- renderPlot({
     expand_limits(y=1)
 }, execOnResize = TRUE)
 
-#  output$plot1 <- renderPlot({
-#    palette(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
-#              "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"))
-#    
-#    par(mar = c(5.1, 4.1, 0, 1))
-#    plot(selectedData(),
-#         col = clusters()$cluster,
-#         pch = 20, cex = 3)
-#    points(clusters()$centers, pch = 4, cex = 4, lwd = 4)
-#  })
+output$info <- renderPrint({
+  out <- nearPoints(mood_data_to_plot$data, input$user_hover, xvar = "Date", yvar = "Mood", threshold = 10, maxpoints = 1, addDist = TRUE)
+  if(nrow(out) > 0) out$Notes
+})
+
   
 }
 

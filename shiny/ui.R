@@ -13,8 +13,9 @@ fluidPage(theme = shinytheme("readable"),
     hr()
   ),
   mainPanel(
-    plotOutput('big_mood_plot'),
-    h4('Changes in mood over time (overall, high, and low per day)')
+    plotOutput('big_mood_plot', click='user_click', brush = 'user_brush', hover = 'user_hover'),
+    h4('Changes in mood over time (overall, high, and low per day)'),
+    textOutput("info")
   )
 )
 
