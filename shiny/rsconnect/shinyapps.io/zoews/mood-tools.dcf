@@ -1,0 +1,13 @@
+name: mood-tools
+title: mood-tools
+username:
+account: zoews
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 901950
+bundleId: 2051673
+url: https://zoews.shinyapps.io/mood-tools/
+when: 1556679979.24784
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: test.R

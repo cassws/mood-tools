@@ -1,7 +1,7 @@
 library(shinythemes)
 # library(shinyWidgets)
 
-fluidPage(theme = shinytheme("darkly"),
+fluidPage(theme = shinytheme("readable"),
   headerPanel('Mood tools!'),
   sidebarPanel(
     textInput("mood_sheet_name", "Your journal name (in Drive)", "mood_journal"),
