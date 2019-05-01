@@ -76,7 +76,7 @@ output$big_mood_plot <- renderPlot({
 output$a_new_plot <- renderPlot({
   ggcorr(mood_data_to_plot$data) +
     theme(text = element_text(size=16))
-})
+}, bg="transparent")
 
 output$walk_and_nature <- renderPlot({
   boxplot_data <- mood_data_to_plot$data %>%
