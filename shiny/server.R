@@ -3,11 +3,14 @@ library(googledrive)
 library(googlesheets4)
 library(ggthemr)
 library(GGally)
+
+# for date formatting
+library(scales)
 # library(ggwordcloud)
 
 function(input, output, session) {
   
-  ggthemr('flat dark', layout= 'clean', type='outer')
+  ggthemr('flat dark', layout= 'minimal', type='outer')
   
   interaction_type <- "none"
   
@@ -63,7 +66,8 @@ output$big_mood_plot <- renderPlot({
   print("is this still running?")
   print(mood_data_to_plot$data)
   ggplot(data = mood_data_to_plot$data) +
-    scale_x_date() + 
+    scale_x_date(labels = date_format('%a %m-%e'), breaks='1 week') + 
+    ylim(1, 5) +
     theme(text = element_text(size=16)) +
     geom_ribbon(aes(x = Date, ymin = Low, ymax = High), alpha=0.45) +
     geom_point(mapping = aes(x = Date, y = Mood), size = 5, color = 'white', alpha = 0.3) +

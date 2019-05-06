@@ -2,22 +2,36 @@ library(shinythemes)
 # library(shinyWidgets)
 
 fluidPage(theme = shinytheme("readable"),
+  tags$head(tags$style(HTML(' 
+  
+  body {
+  background-color: #ece8e8 },
+  form .well {
+  background-color: #ffffffeb
+  }                          
+                            '))),
   headerPanel('Mood tools!'),
   sidebarPanel(
+    tags$b('Configuration panel'),
+    br(),
+    br(),
+    tags$span('Here are some introductions. The idea here is a mood journal. You can play with things below. Stuff!!'),
+    hr(),
     textInput("mood_sheet_name", "Your journal name (in Drive)", "mood_journal"),
     actionButton("go", "Load data"),
     hr(),
-    p('Override mood variable?'),
+    tags$b('Override mood variable?'),
     actionButton("avg", "Yes, use mean"),
     hr(),
     selectInput("walk_nature_indicator", "Walk & Nature Indicator:",
                 c("Overall mood" = "Mood",
                   "High mood" = "High",
                   "Low mood" = "Low")),
-    hr(),
-    dateRangeInput("daterange1", "Date range:",
-                   start = "2019-04-01",
-                   end   = Sys.Date() + 1)
+    hr()
+    # ,
+    # dateRangeInput("daterange1", "Date range:",
+    #                start = "2019-04-01",
+    #                end   = Sys.Date() + 1)
   ),
   mainPanel(
     br(),
