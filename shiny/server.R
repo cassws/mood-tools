@@ -105,7 +105,7 @@ output$walk_and_nature <- renderPlot({
 # 
 # })
 output$info <- renderPrint({
-  out <- nearPoints(mood_data_to_plot$data, input$user_hover, xvar = "Date", yvar = "Mood", threshold = 10, maxpoints = 1, addDist = TRUE)
+  out <- nearPoints(mood_data_to_plot$data, input$user_hover, xvar = "Date", yvar = "Mood", threshold = 15, maxpoints = 1, addDist = TRUE)
   if(nrow(out) > 0) paste(out$Notes,
                           '<br ><br >Sleep: ', out$Sleep, 'hours<br>Nature: ', out$Nature, '<br>Walk: ', out$Walk, '<br>Exercise:', out$Exercise, 'minutes<br>Internet: ', out$Internet, 'minutes')
 })
